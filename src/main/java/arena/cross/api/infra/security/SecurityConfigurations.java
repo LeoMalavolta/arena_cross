@@ -1,5 +1,6 @@
 package arena.cross.api.infra.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfigurations {
 
+    @Autowired
     private SecurityFilter securityFilter;
 
     @Bean
@@ -25,7 +27,6 @@ public class SecurityConfigurations {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST,"/login").permitAll()
-                .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

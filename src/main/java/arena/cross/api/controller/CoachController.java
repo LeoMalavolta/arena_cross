@@ -15,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
-@RequestMapping("/coachs")
+@RequestMapping("coachs")
 public class CoachController {
 
     @Autowired
